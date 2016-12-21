@@ -1,0 +1,43 @@
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+
+.drawer {
+  border: none;
+}
+
+.drawer-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  height: 151px;
+}
+
+.navigation {
+  flex-grow: 1;
+  background-color: &#45;&#45;blue-grey-900 ;
+
+}
+
+.layout .navigation .mdl-navigation__link {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
+}
+
+.navigation .mdl-navigation__link .material-icons {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-right: 32px;
+  width: 24px
+}
