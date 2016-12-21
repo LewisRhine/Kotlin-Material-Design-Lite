@@ -14,6 +14,11 @@ abstract class MdlComponent(tag: String, classType: String, cssClassId: String =
             value?.let { mainElement.setAttribute("class", mainElement.getAttribute("class")?.plus(" $it")!!) }
         }
 
+    var textColor: MdlColor.Text? = null
+        set(value) {
+            value?.let { mainElement.setAttribute("class", mainElement.getAttribute("class")?.plus(" $it")!!) }
+        }
+
     fun <T> htmlPram(parent: Element = mainElement): ReadWriteProperty<Any, T> = object : ReadWriteProperty<Any, T> {
         private var prop: T? = null
 
