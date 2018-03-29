@@ -1,14 +1,36 @@
-package site.pages
+package site.pages.mainpage
 
 import components.*
 import components.layout.Grid
 import components.layout.navigationlayout.MdlContent
 import components.layout.navigationlayout.content
 import components.layout.grid
-import org.w3c.dom.Element
+import header
+import mdlApp
 import site.Color
 
 object MainPage : MdlContent {
+
+    fun createPage() {
+        val mdlApp = mdlApp {
+            navigationLayout(MainPage, "layout") {
+                header(Color.primary) {
+                }
+                drawer("drawer") {
+                    mainElement.header("drawer-header") {
+                        setAttribute("style", " background: url('images/whoiam.jpg') center / cover; padding: 10px;")
+                    }
+
+                    nav("navigation") {
+                        link { text = "Foros"; materialIcons = "forum"; href = "forum.html" }
+                        link { text = "Ingresar"; materialIcons = "account_circle"; href = "https://medium.com/lewisrhine" }
+                        link { text = "Acerca de"; materialIcons = "info"; href = "https://github.com/lewisrhine" }
+                    }
+                }
+            }
+        }
+    }
+
     override val content = content("Pagina Principal") {
         grid {
             val images = Array (20*6) {"images/laptop.jpg"}

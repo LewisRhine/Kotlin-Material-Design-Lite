@@ -18,6 +18,7 @@ this['School-Web-Project'] = function (_, Kotlin) {
   var ReadWriteProperty = Kotlin.kotlin.properties.ReadWriteProperty;
   var Kind_INTERFACE = Kotlin.Kind.INTERFACE;
   var Kind_OBJECT = Kotlin.Kind.OBJECT;
+  var IllegalArgumentException_init = Kotlin.kotlin.IllegalArgumentException_init_pdl1vj$;
   MdlColor$Background.prototype = Object.create(MdlColor.prototype);
   MdlColor$Background.prototype.constructor = MdlColor$Background;
   MdlColor$Background$blueGrey.prototype = Object.create(MdlColor$Background.prototype);
@@ -1581,7 +1582,6 @@ this['School-Web-Project'] = function (_, Kotlin) {
     init(app);
     return app;
   }
-  var IllegalArgumentException_init = Kotlin.kotlin.IllegalArgumentException_init_pdl1vj$;
   function MdlApp() {
     this.app_0 = document.getElementById('MdlApp');
     if (this.app_0 == null) {
@@ -2637,56 +2637,6 @@ this['School-Web-Project'] = function (_, Kotlin) {
   function classType($receiver, className) {
     $receiver.setAttribute('class', className);
   }
-  function main$lambda$lambda$lambda($receiver) {
-    return Unit;
-  }
-  function main$lambda$lambda$lambda$lambda$lambda($receiver) {
-    $receiver.text = 'Foros';
-    $receiver.materialIcons = 'forum';
-    $receiver.href = 'forum.html';
-    return Unit;
-  }
-  function main$lambda$lambda$lambda$lambda$lambda_0($receiver) {
-    $receiver.text = 'Ingresar';
-    $receiver.materialIcons = 'account_circle';
-    $receiver.href = 'https://medium.com/lewisrhine';
-    return Unit;
-  }
-  function main$lambda$lambda$lambda$lambda$lambda_1($receiver) {
-    $receiver.text = 'Acerca de';
-    $receiver.materialIcons = 'info';
-    $receiver.href = 'https://github.com/lewisrhine';
-    return Unit;
-  }
-  function main$lambda$lambda$lambda$lambda($receiver) {
-    $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda);
-    $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_0);
-    $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_1);
-    return Unit;
-  }
-  function main$lambda$lambda$lambda_0($receiver) {
-    var $receiver_0 = $receiver.mainElement;
-    var classId = 'drawer-header';
-    var $receiver_1 = document.createElement('header');
-    classType($receiver_1, classId);
-    var header = $receiver_1;
-    header.setAttribute('style', " background: url('images/whoiam.jpg') center / cover; padding: 10px;");
-    $receiver_0.append(header);
-    $receiver.nav_huf4ba$('navigation', main$lambda$lambda$lambda$lambda);
-    return Unit;
-  }
-  function main$lambda$lambda($receiver) {
-    $receiver.header_jktz5e$(Color_getInstance().primary, void 0, void 0, main$lambda$lambda$lambda);
-    $receiver.drawer_pvsmkh$('drawer', void 0, main$lambda$lambda$lambda_0);
-    return Unit;
-  }
-  function main$lambda($receiver) {
-    $receiver.navigationLayout_d0ce5n$(MainPage_getInstance(), 'layout', main$lambda$lambda);
-    return Unit;
-  }
-  function main(args) {
-    var mdlApp_0 = mdlApp(main$lambda);
-  }
   function Color() {
     Color_instance = this;
     this.primary = (new MdlColor$Background$pink(Shade$s800_getInstance())).toString();
@@ -2704,13 +2654,88 @@ this['School-Web-Project'] = function (_, Kotlin) {
     }
     return Color_instance;
   }
+  var MAINPAGE_TITLE;
+  var FORUM_TITLE;
+  function main(args) {
+    var tmp$, tmp$_0, tmp$_1;
+    tmp$ = document.getElementById('MdlApp');
+    if (tmp$ == null) {
+      throw IllegalArgumentException_init('No MldApp Element found!');
+    }
+    tmp$_1 = Kotlin.isType(tmp$_0 = tmp$, HTMLElement) ? tmp$_0 : null;
+    if (tmp$_1 == null) {
+      throw IllegalArgumentException_init('MldApp Element is not div!');
+    }
+    var start = tmp$_1;
+    switch (start.title) {
+      case 'Main':
+        MainPage_getInstance().createPage();
+        break;
+      case 'Forum':
+        Forums_getInstance().createPage();
+        break;
+      case '':
+        throw IllegalArgumentException_init('MldApp Element has no title!');
+      default:throw IllegalArgumentException_init('MldApp Element title not defined!');
+    }
+  }
   function Forums() {
     Forums_instance = this;
-    this.content_6m6m6s$_0 = content('Foros', void 0, Forums$content$lambda);
+    this.content_77jnk1$_0 = content('Foros', void 0, Forums$content$lambda);
   }
+  function Forums$createPage$lambda$lambda$lambda($receiver) {
+    return Unit;
+  }
+  function Forums$createPage$lambda$lambda$lambda$lambda$lambda($receiver) {
+    $receiver.text = 'Foros';
+    $receiver.materialIcons = 'forum';
+    $receiver.href = 'forum.html';
+    return Unit;
+  }
+  function Forums$createPage$lambda$lambda$lambda$lambda$lambda_0($receiver) {
+    $receiver.text = 'Ingresar';
+    $receiver.materialIcons = 'account_circle';
+    $receiver.href = 'https://medium.com/lewisrhine';
+    return Unit;
+  }
+  function Forums$createPage$lambda$lambda$lambda$lambda$lambda_1($receiver) {
+    $receiver.text = 'Acerca de';
+    $receiver.materialIcons = 'info';
+    $receiver.href = 'https://github.com/lewisrhine';
+    return Unit;
+  }
+  function Forums$createPage$lambda$lambda$lambda$lambda($receiver) {
+    $receiver.link_g1rzco$(Forums$createPage$lambda$lambda$lambda$lambda$lambda);
+    $receiver.link_g1rzco$(Forums$createPage$lambda$lambda$lambda$lambda$lambda_0);
+    $receiver.link_g1rzco$(Forums$createPage$lambda$lambda$lambda$lambda$lambda_1);
+    return Unit;
+  }
+  function Forums$createPage$lambda$lambda$lambda_0($receiver) {
+    var $receiver_0 = $receiver.mainElement;
+    var classId = 'drawer-header';
+    var $receiver_1 = document.createElement('header');
+    classType($receiver_1, classId);
+    var header = $receiver_1;
+    header.setAttribute('style', " background: url('images/whoiam.jpg') center / cover; padding: 10px;");
+    $receiver_0.append(header);
+    $receiver.nav_huf4ba$('navigation', Forums$createPage$lambda$lambda$lambda$lambda);
+    return Unit;
+  }
+  function Forums$createPage$lambda$lambda($receiver) {
+    $receiver.header_jktz5e$(Color_getInstance().primary, void 0, void 0, Forums$createPage$lambda$lambda$lambda);
+    $receiver.drawer_pvsmkh$('drawer', void 0, Forums$createPage$lambda$lambda$lambda_0);
+    return Unit;
+  }
+  function Forums$createPage$lambda($receiver) {
+    $receiver.navigationLayout_d0ce5n$(Forums_getInstance(), 'layout', Forums$createPage$lambda$lambda);
+    return Unit;
+  }
+  Forums.prototype.createPage = function () {
+    var mdlApp_0 = mdlApp(Forums$createPage$lambda);
+  };
   Object.defineProperty(Forums.prototype, 'content', {
     get: function () {
-      return this.content_6m6m6s$_0;
+      return this.content_77jnk1$_0;
     }
   });
   function Forums$content$lambda($receiver) {
@@ -2731,11 +2756,61 @@ this['School-Web-Project'] = function (_, Kotlin) {
   }
   function MainPage() {
     MainPage_instance = this;
-    this.content_vbbrue$_0 = content('Pagina Principal', void 0, MainPage$content$lambda(this));
+    this.content_mt7l9q$_0 = content('Pagina Principal', void 0, MainPage$content$lambda(this));
   }
+  function MainPage$createPage$lambda$lambda$lambda($receiver) {
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda$lambda$lambda($receiver) {
+    $receiver.text = 'Foros';
+    $receiver.materialIcons = 'forum';
+    $receiver.href = 'forum.html';
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda$lambda$lambda_0($receiver) {
+    $receiver.text = 'Ingresar';
+    $receiver.materialIcons = 'account_circle';
+    $receiver.href = 'https://medium.com/lewisrhine';
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda$lambda$lambda_1($receiver) {
+    $receiver.text = 'Acerca de';
+    $receiver.materialIcons = 'info';
+    $receiver.href = 'https://github.com/lewisrhine';
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda$lambda($receiver) {
+    $receiver.link_g1rzco$(MainPage$createPage$lambda$lambda$lambda$lambda$lambda);
+    $receiver.link_g1rzco$(MainPage$createPage$lambda$lambda$lambda$lambda$lambda_0);
+    $receiver.link_g1rzco$(MainPage$createPage$lambda$lambda$lambda$lambda$lambda_1);
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda_0($receiver) {
+    var $receiver_0 = $receiver.mainElement;
+    var classId = 'drawer-header';
+    var $receiver_1 = document.createElement('header');
+    classType($receiver_1, classId);
+    var header = $receiver_1;
+    header.setAttribute('style', " background: url('images/whoiam.jpg') center / cover; padding: 10px;");
+    $receiver_0.append(header);
+    $receiver.nav_huf4ba$('navigation', MainPage$createPage$lambda$lambda$lambda$lambda);
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda($receiver) {
+    $receiver.header_jktz5e$(Color_getInstance().primary, void 0, void 0, MainPage$createPage$lambda$lambda$lambda);
+    $receiver.drawer_pvsmkh$('drawer', void 0, MainPage$createPage$lambda$lambda$lambda_0);
+    return Unit;
+  }
+  function MainPage$createPage$lambda($receiver) {
+    $receiver.navigationLayout_d0ce5n$(MainPage_getInstance(), 'layout', MainPage$createPage$lambda$lambda);
+    return Unit;
+  }
+  MainPage.prototype.createPage = function () {
+    var mdlApp_0 = mdlApp(MainPage$createPage$lambda);
+  };
   Object.defineProperty(MainPage.prototype, 'content', {
     get: function () {
-      return this.content_vbbrue$_0;
+      return this.content_mt7l9q$_0;
     }
   });
   function MainPage$createX$lambda(closure$images, closure$i, closure$titles, closure$supportingTexts) {
@@ -3006,21 +3081,35 @@ this['School-Web-Project'] = function (_, Kotlin) {
   _.style_46n0ku$ = style;
   _.Img = Img;
   var package$site = _.site || (_.site = {});
-  package$site.main_kand9s$ = main;
   Object.defineProperty(package$site, 'Color', {
     get: Color_getInstance
   });
   var package$pages = package$site.pages || (package$site.pages = {});
-  Object.defineProperty(package$pages, 'Forums', {
+  Object.defineProperty(package$pages, 'MAINPAGE_TITLE', {
+    get: function () {
+      return MAINPAGE_TITLE;
+    }
+  });
+  Object.defineProperty(package$pages, 'FORUM_TITLE', {
+    get: function () {
+      return FORUM_TITLE;
+    }
+  });
+  package$pages.main_kand9s$ = main;
+  var package$forumspage = package$pages.forumspage || (package$pages.forumspage = {});
+  Object.defineProperty(package$forumspage, 'Forums', {
     get: Forums_getInstance
   });
-  Object.defineProperty(package$pages, 'MainPage', {
+  var package$mainpage = package$pages.mainpage || (package$pages.mainpage = {});
+  Object.defineProperty(package$mainpage, 'MainPage', {
     get: MainPage_getInstance
   });
   Drawer.prototype.nav_huf4ba$$default = LayoutNav.prototype.nav_huf4ba$$default;
   Drawer.prototype.layoutTile_t2t2ot$$default = LayoutTile.prototype.layoutTile_t2t2ot$$default;
   Drawer.prototype.nav_huf4ba$ = LayoutNav.prototype.nav_huf4ba$;
   Drawer.prototype.layoutTile_t2t2ot$ = LayoutTile.prototype.layoutTile_t2t2ot$;
+  MAINPAGE_TITLE = 'Main';
+  FORUM_TITLE = 'Forum';
   main([]);
   Kotlin.defineModule('School-Web-Project', _);
   return _;
