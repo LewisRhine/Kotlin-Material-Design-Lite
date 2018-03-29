@@ -10,6 +10,8 @@ this['School-Web-Project'] = function (_, Kotlin) {
   var Unit = Kotlin.kotlin.Unit;
   var appendElement = Kotlin.kotlin.dom.appendElement_ldvnw0$;
   var PropertyMetadata = Kotlin.PropertyMetadata;
+  var Kind_OBJECT = Kotlin.Kind.OBJECT;
+  var createElement = Kotlin.kotlin.dom.createElement_7cgwi1$;
   var defineInlineFunction = Kotlin.defineInlineFunction;
   var wrapFunction = Kotlin.wrapFunction;
   var ensureNotNull = Kotlin.ensureNotNull;
@@ -17,7 +19,6 @@ this['School-Web-Project'] = function (_, Kotlin) {
   var equals = Kotlin.equals;
   var ReadWriteProperty = Kotlin.kotlin.properties.ReadWriteProperty;
   var Kind_INTERFACE = Kotlin.Kind.INTERFACE;
-  var Kind_OBJECT = Kotlin.Kind.OBJECT;
   var IllegalArgumentException_init = Kotlin.kotlin.IllegalArgumentException_init_pdl1vj$;
   MdlColor$Background.prototype = Object.create(MdlColor.prototype);
   MdlColor$Background.prototype.constructor = MdlColor$Background;
@@ -1775,10 +1776,17 @@ this['School-Web-Project'] = function (_, Kotlin) {
       height = -1;
     this.mainElement.setAttribute('style', 'width: ' + width + 'px; height: ' + height + 'px;');
   };
-  function Card$set_Card$button$lambda(closure$value) {
+  function Card$set_Card$button$lambda$lambda(closure$value, this$) {
+    return function (f) {
+      closure$value.onClick(this$);
+      return Unit;
+    };
+  }
+  function Card$set_Card$button$lambda(closure$value, this$Card) {
     return function ($receiver) {
       classType($receiver, 'mdl-button mdl-js-button mdl-js-ripple-effect ' + closure$value.color);
       $receiver.textContent = closure$value.text;
+      this$Card.mainElement.addEventListener('click', Card$set_Card$button$lambda$lambda(closure$value, $receiver));
       return Unit;
     };
   }
@@ -1789,7 +1797,7 @@ this['School-Web-Project'] = function (_, Kotlin) {
     set: function (value) {
       var tmp$;
       if (value != null) {
-        appendElement(this.mainElement, 'a', Card$set_Card$button$lambda(value));
+        appendElement(this.mainElement, 'a', Card$set_Card$button$lambda(value, this));
       }
        else {
         (tmp$ = this.mainElement.getElementsByClassName('mdl-button')[0]) != null ? (tmp$.remove(), Unit) : null;
@@ -1885,9 +1893,10 @@ this['School-Web-Project'] = function (_, Kotlin) {
   Card$Image.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.url, other.url) && Kotlin.equals(this.alt, other.alt)))));
   };
-  function Card$Button(text, color) {
+  function Card$Button(text, color, onClick) {
     this.text = text;
     this.color = color;
+    this.onClick = onClick;
   }
   Card$Button.$metadata$ = {
     kind: Kind_CLASS,
@@ -1900,20 +1909,24 @@ this['School-Web-Project'] = function (_, Kotlin) {
   Card$Button.prototype.component2 = function () {
     return this.color;
   };
-  Card$Button.prototype.copy_puj7f4$ = function (text, color) {
-    return new Card$Button(text === void 0 ? this.text : text, color === void 0 ? this.color : color);
+  Card$Button.prototype.component3 = function () {
+    return this.onClick;
+  };
+  Card$Button.prototype.copy_ra6vw2$ = function (text, color, onClick) {
+    return new Card$Button(text === void 0 ? this.text : text, color === void 0 ? this.color : color, onClick === void 0 ? this.onClick : onClick);
   };
   Card$Button.prototype.toString = function () {
-    return 'Button(text=' + Kotlin.toString(this.text) + (', color=' + Kotlin.toString(this.color)) + ')';
+    return 'Button(text=' + Kotlin.toString(this.text) + (', color=' + Kotlin.toString(this.color)) + (', onClick=' + Kotlin.toString(this.onClick)) + ')';
   };
   Card$Button.prototype.hashCode = function () {
     var result = 0;
     result = result * 31 + Kotlin.hashCode(this.text) | 0;
     result = result * 31 + Kotlin.hashCode(this.color) | 0;
+    result = result * 31 + Kotlin.hashCode(this.onClick) | 0;
     return result;
   };
   Card$Button.prototype.equals = function (other) {
-    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.text, other.text) && Kotlin.equals(this.color, other.color)))));
+    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.text, other.text) && Kotlin.equals(this.color, other.color) && Kotlin.equals(this.onClick, other.onClick)))));
   };
   Card.$metadata$ = {
     kind: Kind_CLASS,
@@ -1992,6 +2005,177 @@ this['School-Web-Project'] = function (_, Kotlin) {
     kind: Kind_CLASS,
     simpleName: 'Chip',
     interfaces: [MdlComponent]
+  };
+  function dialog($receiver, cssClassId, init) {
+    if (cssClassId === void 0)
+      cssClassId = '';
+    var dialog = new Dialog(cssClassId);
+    init(dialog);
+    return dialog.mainElement;
+  }
+  function Dialog(cssClassId) {
+    Dialog$Companion_getInstance();
+    if (cssClassId === void 0)
+      cssClassId = '';
+    this.mainElement = null;
+    this.mainElement = createElement(document, 'dialog', Dialog_init$lambda(cssClassId));
+    dialogPolyfill.registerDialog(this.mainElement);
+    this.open_0();
+    this.title_2eziy8$_0 = '';
+    this.content_rj5df5$_0 = '';
+    this.buttonOne_x4mffw$_0 = null;
+  }
+  function Dialog$Companion() {
+    Dialog$Companion_instance = this;
+    this.isADialogAlreadyOpen = false;
+  }
+  Dialog$Companion.$metadata$ = {
+    kind: Kind_OBJECT,
+    simpleName: 'Companion',
+    interfaces: []
+  };
+  var Dialog$Companion_instance = null;
+  function Dialog$Companion_getInstance() {
+    if (Dialog$Companion_instance === null) {
+      new Dialog$Companion();
+    }
+    return Dialog$Companion_instance;
+  }
+  Object.defineProperty(Dialog.prototype, 'title', {
+    get: function () {
+      return this.title_2eziy8$_0;
+    },
+    set: function (value) {
+      var $receiver = this.mainElement;
+      var classId = 'mdl-dialog__title';
+      var $receiver_0 = document.createElement('h2');
+      classType($receiver_0, classId);
+      var h2 = $receiver_0;
+      h2.textContent = value;
+      $receiver.append(h2);
+    }
+  });
+  function Dialog$set_Dialog$content$lambda$lambda(closure$value) {
+    return function ($receiver) {
+      $receiver.textContent = closure$value;
+      return Unit;
+    };
+  }
+  Object.defineProperty(Dialog.prototype, 'content', {
+    get: function () {
+      return this.content_rj5df5$_0;
+    },
+    set: function (value) {
+      var $receiver = this.mainElement;
+      var classId = 'mdl-dialog__content';
+      var $receiver_0 = document.createElement('div');
+      classType($receiver_0, classId);
+      var div = $receiver_0;
+      appendElement(div, 'p', Dialog$set_Dialog$content$lambda$lambda(value));
+      $receiver.append(div);
+    }
+  });
+  function Dialog$set_Dialog$buttonOne$lambda$lambda(closure$value, this$, this$Dialog) {
+    return function (f) {
+      closure$value.onClick(this$);
+      if (closure$value.shouldClose) {
+        this$Dialog.close_0();
+      }
+      return Unit;
+    };
+  }
+  function Dialog$set_Dialog$buttonOne$lambda(closure$value, this$Dialog) {
+    return function ($receiver) {
+      classType($receiver, 'mdl-button mdl-js-button mdl-js-ripple-effect ' + closure$value.color);
+      $receiver.textContent = closure$value.text.toUpperCase();
+      this$Dialog.mainElement.addEventListener('click', Dialog$set_Dialog$buttonOne$lambda$lambda(closure$value, $receiver, this$Dialog));
+      return Unit;
+    };
+  }
+  Object.defineProperty(Dialog.prototype, 'buttonOne', {
+    get: function () {
+      return this.buttonOne_x4mffw$_0;
+    },
+    set: function (value) {
+      var tmp$;
+      if (value != null) {
+        appendElement(this.mainElement, 'a', Dialog$set_Dialog$buttonOne$lambda(value, this));
+      }
+       else {
+        (tmp$ = this.mainElement.getElementsByClassName('mdl-button')[0]) != null ? (tmp$.remove(), Unit) : null;
+      }
+    }
+  });
+  Dialog.prototype.open_0 = function () {
+    var tmp$;
+    if (!Dialog$Companion_getInstance().isADialogAlreadyOpen) {
+      Dialog$Companion_getInstance().isADialogAlreadyOpen = true;
+      (tmp$ = document.getElementsByTagName('body')[0]) != null ? (tmp$.append(this.mainElement), Unit) : null;
+      var mainElementInsecure = this.mainElement;
+      mainElementInsecure.showModal();
+    }
+  };
+  Dialog.prototype.close_0 = function () {
+    var mainElementInsecure = this.mainElement;
+    mainElementInsecure.close();
+    this.mainElement.remove();
+    Dialog$Companion_getInstance().isADialogAlreadyOpen = false;
+  };
+  function Dialog$Button(text, shouldClose, color, onClick) {
+    if (onClick === void 0)
+      onClick = Dialog$Dialog$Button_init$lambda;
+    this.text = text;
+    this.shouldClose = shouldClose;
+    this.color = color;
+    this.onClick = onClick;
+  }
+  function Dialog$Dialog$Button_init$lambda($receiver) {
+    return Unit;
+  }
+  Dialog$Button.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Button',
+    interfaces: []
+  };
+  Dialog$Button.prototype.component1 = function () {
+    return this.text;
+  };
+  Dialog$Button.prototype.component2 = function () {
+    return this.shouldClose;
+  };
+  Dialog$Button.prototype.component3 = function () {
+    return this.color;
+  };
+  Dialog$Button.prototype.component4 = function () {
+    return this.onClick;
+  };
+  Dialog$Button.prototype.copy_f42jb1$ = function (text, shouldClose, color, onClick) {
+    return new Dialog$Button(text === void 0 ? this.text : text, shouldClose === void 0 ? this.shouldClose : shouldClose, color === void 0 ? this.color : color, onClick === void 0 ? this.onClick : onClick);
+  };
+  Dialog$Button.prototype.toString = function () {
+    return 'Button(text=' + Kotlin.toString(this.text) + (', shouldClose=' + Kotlin.toString(this.shouldClose)) + (', color=' + Kotlin.toString(this.color)) + (', onClick=' + Kotlin.toString(this.onClick)) + ')';
+  };
+  Dialog$Button.prototype.hashCode = function () {
+    var result = 0;
+    result = result * 31 + Kotlin.hashCode(this.text) | 0;
+    result = result * 31 + Kotlin.hashCode(this.shouldClose) | 0;
+    result = result * 31 + Kotlin.hashCode(this.color) | 0;
+    result = result * 31 + Kotlin.hashCode(this.onClick) | 0;
+    return result;
+  };
+  Dialog$Button.prototype.equals = function (other) {
+    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.text, other.text) && Kotlin.equals(this.shouldClose, other.shouldClose) && Kotlin.equals(this.color, other.color) && Kotlin.equals(this.onClick, other.onClick)))));
+  };
+  function Dialog_init$lambda(closure$cssClassId) {
+    return function ($receiver) {
+      classType($receiver, closure$cssClassId + ' backdrop mdl-dialog');
+      return Unit;
+    };
+  }
+  Dialog.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Dialog',
+    interfaces: []
   };
   var list = defineInlineFunction('School-Web-Project.components.list_tt4us9$', wrapFunction(function () {
     var List_init = _.components.List;
@@ -2414,14 +2598,14 @@ this['School-Web-Project'] = function (_, Kotlin) {
       this.href_rf7tue$_0.setValue_9rddgb$(this, Nav$Link$href_metadata, href);
     }
   });
-  function Nav$Link$onClick$lambda(closure$doOn) {
+  function Nav$Link$onClick$lambda(this$Link, closure$doOn) {
     return function (f) {
-      closure$doOn();
+      closure$doOn(this$Link.mainElement);
       return Unit;
     };
   }
-  Nav$Link.prototype.onClick_o14v8n$ = function (doOn) {
-    this.mainElement.addEventListener('click', Nav$Link$onClick$lambda(doOn));
+  Nav$Link.prototype.onClick_fatjke$ = function (doOn) {
+    this.mainElement.addEventListener('click', Nav$Link$onClick$lambda(this, doOn));
   };
   Nav$Link.$metadata$ = {
     kind: Kind_CLASS,
@@ -2767,16 +2951,35 @@ this['School-Web-Project'] = function (_, Kotlin) {
     $receiver.href = 'forum.html';
     return Unit;
   }
+  function MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda$lambda($receiver) {
+    $receiver.title = 'Ingresar';
+    $receiver.buttonOne = new Dialog$Button('CERRAR', true, Color_getInstance().accent);
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda($receiver) {
+    dialog($receiver, void 0, MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda$lambda);
+    return Unit;
+  }
   function MainPage$createPage$lambda$lambda$lambda$lambda$lambda_0($receiver) {
     $receiver.text = 'Ingresar';
     $receiver.materialIcons = 'account_circle';
-    $receiver.href = 'https://medium.com/lewisrhine';
+    $receiver.onClick_fatjke$(MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda);
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda$lambda_0($receiver) {
+    $receiver.title = 'Acerca de';
+    $receiver.content = 'Emmanuel Messulam';
+    $receiver.buttonOne = new Dialog$Button('CERRAR', true, Color_getInstance().accent);
+    return Unit;
+  }
+  function MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda_0($receiver) {
+    dialog($receiver, void 0, MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda$lambda_0);
     return Unit;
   }
   function MainPage$createPage$lambda$lambda$lambda$lambda$lambda_1($receiver) {
     $receiver.text = 'Acerca de';
     $receiver.materialIcons = 'info';
-    $receiver.href = 'https://github.com/lewisrhine';
+    $receiver.onClick_fatjke$(MainPage$createPage$lambda$lambda$lambda$lambda$lambda$lambda_0);
     return Unit;
   }
   function MainPage$createPage$lambda$lambda$lambda$lambda($receiver) {
@@ -2813,13 +3016,23 @@ this['School-Web-Project'] = function (_, Kotlin) {
       return this.content_mt7l9q$_0;
     }
   });
+  function MainPage$createX$lambda$lambda$lambda($receiver) {
+    $receiver.title = 'Rithmio';
+    $receiver.content = 'At Rithmio I Introduced new technologies like Kotlin and RxJava which have helped to make the team faster and more efficient.';
+    $receiver.buttonOne = new Dialog$Button('Ir a foros', true, Color_getInstance().accent);
+    return Unit;
+  }
+  function MainPage$createX$lambda$lambda($receiver) {
+    dialog($receiver, void 0, MainPage$createX$lambda$lambda$lambda);
+    return Unit;
+  }
   function MainPage$createX$lambda(closure$images, closure$i, closure$titles, closure$supportingTexts) {
     return function ($receiver) {
       $receiver.size_vux9f0$();
       $receiver.image = new Card$Image(closure$images[closure$i]);
       $receiver.title = closure$titles[closure$i];
       $receiver.supportingText = closure$supportingTexts[closure$i];
-      $receiver.button = new Card$Button('VER', Color_getInstance().accent);
+      $receiver.button = new Card$Button('VER', Color_getInstance().accent, MainPage$createX$lambda$lambda);
       return Unit;
     };
   }
@@ -3047,6 +3260,12 @@ this['School-Web-Project'] = function (_, Kotlin) {
   Chip.ChipText = Chip$ChipText;
   Chip.ContactImage = Chip$ContactImage;
   package$components.Chip = Chip;
+  package$components.dialog_gnb9wv$ = dialog;
+  Object.defineProperty(Dialog, 'Companion', {
+    get: Dialog$Companion_getInstance
+  });
+  Dialog.Button = Dialog$Button;
+  package$components.Dialog = Dialog;
   _.plus_mh1xch$ = plus;
   package$components.list_tt4us9$ = list;
   package$components.List = List;

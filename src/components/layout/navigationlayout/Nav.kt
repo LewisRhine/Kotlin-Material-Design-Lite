@@ -33,8 +33,8 @@ class Nav(cssClassId: String = "") : MdlComponent("nav", "mdl-navigation", cssCl
         var materialIcons: String = ""
         var text: String = ""
 
-        fun onClick(doOn: () -> Unit ) {
-            mainElement.addEventListener("click",  { _: Event -> doOn() })
+        fun onClick(doOn: Element.() -> Unit ) {
+            mainElement.addEventListener("click",  { _: Event -> mainElement.doOn() })
         }
     }
 }

@@ -5,6 +5,7 @@ import div
 import h2
 import img
 import org.w3c.dom.Element
+import org.w3c.dom.events.Event
 import org.w3c.dom.get
 import kotlin.browser.document
 import kotlin.dom.appendElement
@@ -51,6 +52,7 @@ class Card(cssClassId: String = "", shadow: Shadow = Card.Shadow.DP2) : MdlCompo
                 mainElement.appendElement("a") {
                     classType("mdl-button mdl-js-button mdl-js-ripple-effect ${value.color}")
                     textContent = value.text
+                    mainElement.addEventListener("click",  { _: Event -> value.onClick.invoke(this) })
                 }
             } else {
                 mainElement.getElementsByClassName("mdl-button")[0]?.remove()
@@ -81,6 +83,6 @@ class Card(cssClassId: String = "", shadow: Shadow = Card.Shadow.DP2) : MdlCompo
 
     data class Image(val url: String, val alt: String = "")
 
-    data class Button(val text: String, val color: String)
+    data class Button(val text: String, val color: String, val onClick: Element.() -> Unit )
 
 }
