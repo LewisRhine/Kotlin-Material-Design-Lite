@@ -41,3 +41,7 @@ html, body {
   margin-right: 32px;
   width: 24px
 }
+
+.card_helper {
+    max-width: 100%;
+}

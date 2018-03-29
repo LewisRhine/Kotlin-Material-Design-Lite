@@ -8,6 +8,7 @@ this['School-Web-Project'] = function (_, Kotlin) {
   var Enum = Kotlin.kotlin.Enum;
   var throwISE = Kotlin.throwISE;
   var Unit = Kotlin.kotlin.Unit;
+  var appendElement = Kotlin.kotlin.dom.appendElement_ldvnw0$;
   var PropertyMetadata = Kotlin.PropertyMetadata;
   var defineInlineFunction = Kotlin.defineInlineFunction;
   var wrapFunction = Kotlin.wrapFunction;
@@ -1618,6 +1619,8 @@ this['School-Web-Project'] = function (_, Kotlin) {
     if (shadow === void 0)
       shadow = Card$Shadow$DP2_getInstance();
     MdlComponent.call(this, 'div', 'mdl-card ' + shadow, cssClassId);
+    this.button_3su3m$_0 = null;
+    this.image_cupue3$_0 = null;
     this.title_7p2xyw$_0 = '';
     this.supportingText_jh93qk$_0 = '';
   }
@@ -1772,6 +1775,51 @@ this['School-Web-Project'] = function (_, Kotlin) {
       height = -1;
     this.mainElement.setAttribute('style', 'width: ' + width + 'px; height: ' + height + 'px;');
   };
+  function Card$set_Card$button$lambda(closure$value) {
+    return function ($receiver) {
+      classType($receiver, 'mdl-button mdl-js-button mdl-js-ripple-effect ' + closure$value.color);
+      $receiver.textContent = closure$value.text;
+      return Unit;
+    };
+  }
+  Object.defineProperty(Card.prototype, 'button', {
+    get: function () {
+      return this.button_3su3m$_0;
+    },
+    set: function (value) {
+      var tmp$;
+      if (value != null) {
+        appendElement(this.mainElement, 'a', Card$set_Card$button$lambda(value));
+      }
+       else {
+        (tmp$ = this.mainElement.getElementsByClassName('mdl-button')[0]) != null ? (tmp$.remove(), Unit) : null;
+      }
+    }
+  });
+  Object.defineProperty(Card.prototype, 'image', {
+    get: function () {
+      return this.image_cupue3$_0;
+    },
+    set: function (value) {
+      var tmp$;
+      if (value != null) {
+        var $receiver = this.mainElement;
+        var classId = 'mdl-card__media';
+        var $receiver_0 = document.createElement('div');
+        classType($receiver_0, classId);
+        var div = $receiver_0;
+        var img = new Img('card_helper');
+        img.src = value.url;
+        img.alt = value.alt;
+        div.append(img.mainElement);
+        img.mainElement;
+        $receiver.append(div);
+      }
+       else {
+        (tmp$ = this.mainElement.getElementsByClassName('mdl-card__media')[0]) != null ? (tmp$.remove(), Unit) : null;
+      }
+    }
+  });
   Object.defineProperty(Card.prototype, 'title', {
     get: function () {
       return this.title_7p2xyw$_0;
@@ -1805,6 +1853,68 @@ this['School-Web-Project'] = function (_, Kotlin) {
       $receiver.append(div);
     }
   });
+  function Card$Image(url, alt) {
+    if (alt === void 0)
+      alt = '';
+    this.url = url;
+    this.alt = alt;
+  }
+  Card$Image.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Image',
+    interfaces: []
+  };
+  Card$Image.prototype.component1 = function () {
+    return this.url;
+  };
+  Card$Image.prototype.component2 = function () {
+    return this.alt;
+  };
+  Card$Image.prototype.copy_puj7f4$ = function (url, alt) {
+    return new Card$Image(url === void 0 ? this.url : url, alt === void 0 ? this.alt : alt);
+  };
+  Card$Image.prototype.toString = function () {
+    return 'Image(url=' + Kotlin.toString(this.url) + (', alt=' + Kotlin.toString(this.alt)) + ')';
+  };
+  Card$Image.prototype.hashCode = function () {
+    var result = 0;
+    result = result * 31 + Kotlin.hashCode(this.url) | 0;
+    result = result * 31 + Kotlin.hashCode(this.alt) | 0;
+    return result;
+  };
+  Card$Image.prototype.equals = function (other) {
+    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.url, other.url) && Kotlin.equals(this.alt, other.alt)))));
+  };
+  function Card$Button(text, color) {
+    this.text = text;
+    this.color = color;
+  }
+  Card$Button.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'Button',
+    interfaces: []
+  };
+  Card$Button.prototype.component1 = function () {
+    return this.text;
+  };
+  Card$Button.prototype.component2 = function () {
+    return this.color;
+  };
+  Card$Button.prototype.copy_puj7f4$ = function (text, color) {
+    return new Card$Button(text === void 0 ? this.text : text, color === void 0 ? this.color : color);
+  };
+  Card$Button.prototype.toString = function () {
+    return 'Button(text=' + Kotlin.toString(this.text) + (', color=' + Kotlin.toString(this.color)) + ')';
+  };
+  Card$Button.prototype.hashCode = function () {
+    var result = 0;
+    result = result * 31 + Kotlin.hashCode(this.text) | 0;
+    result = result * 31 + Kotlin.hashCode(this.color) | 0;
+    return result;
+  };
+  Card$Button.prototype.equals = function (other) {
+    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.text, other.text) && Kotlin.equals(this.color, other.color)))));
+  };
   Card.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Card',
@@ -2530,278 +2640,166 @@ this['School-Web-Project'] = function (_, Kotlin) {
   function main$lambda$lambda$lambda($receiver) {
     return Unit;
   }
-  function main$lambda$lambda$lambda$lambda$lambda$lambda(this$) {
-    return function () {
-      this$.content = About_getInstance();
-      return Unit;
-    };
-  }
-  function main$lambda$lambda$lambda$lambda$lambda(this$) {
-    return function ($receiver) {
-      $receiver.text = 'About';
-      $receiver.materialIcons = 'account_circle';
-      $receiver.onClick_o14v8n$(main$lambda$lambda$lambda$lambda$lambda$lambda(this$));
-      return Unit;
-    };
+  function main$lambda$lambda$lambda$lambda$lambda($receiver) {
+    $receiver.text = 'Foros';
+    $receiver.materialIcons = 'forum';
+    $receiver.href = 'forum.html';
+    return Unit;
   }
   function main$lambda$lambda$lambda$lambda$lambda_0($receiver) {
-    $receiver.text = 'Blog';
-    $receiver.materialIcons = 'book';
+    $receiver.text = 'Ingresar';
+    $receiver.materialIcons = 'account_circle';
     $receiver.href = 'https://medium.com/lewisrhine';
     return Unit;
   }
   function main$lambda$lambda$lambda$lambda$lambda_1($receiver) {
-    $receiver.text = 'Projects';
-    $receiver.materialIcons = 'build';
+    $receiver.text = 'Acerca de';
+    $receiver.materialIcons = 'info';
     $receiver.href = 'https://github.com/lewisrhine';
     return Unit;
   }
-  function main$lambda$lambda$lambda$lambda$lambda_2($receiver) {
-    $receiver.text = 'Twitter';
-    $receiver.href = 'https://twitter.com/lewisrhine';
-    var tmp$ = $receiver.mainElement;
-    var $receiver_0 = document.createElement('i');
-    $receiver_0.setAttribute('class', 'material-icons fa fa-twitter');
-    tmp$.append($receiver_0);
+  function main$lambda$lambda$lambda$lambda($receiver) {
+    $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda);
+    $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_0);
+    $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_1);
     return Unit;
   }
-  function main$lambda$lambda$lambda$lambda$lambda_3($receiver) {
-    $receiver.text = 'Instagram';
-    $receiver.href = 'https://www.instagram.com/lewisrhine';
-    var tmp$ = $receiver.mainElement;
-    var $receiver_0 = document.createElement('i');
-    $receiver_0.setAttribute('class', 'material-icons fa fa-instagram');
-    tmp$.append($receiver_0);
+  function main$lambda$lambda$lambda_0($receiver) {
+    var $receiver_0 = $receiver.mainElement;
+    var classId = 'drawer-header';
+    var $receiver_1 = document.createElement('header');
+    classType($receiver_1, classId);
+    var header = $receiver_1;
+    header.setAttribute('style', " background: url('images/whoiam.jpg') center / cover; padding: 10px;");
+    $receiver_0.append(header);
+    $receiver.nav_huf4ba$('navigation', main$lambda$lambda$lambda$lambda);
     return Unit;
-  }
-  function main$lambda$lambda$lambda$lambda$lambda_4($receiver) {
-    $receiver.text = 'LinkedIn';
-    $receiver.href = 'https://www.linkedin.com/in/lewisrhine';
-    var tmp$ = $receiver.mainElement;
-    var $receiver_0 = document.createElement('i');
-    $receiver_0.setAttribute('class', 'material-icons fa fa-linkedin');
-    tmp$.append($receiver_0);
-    return Unit;
-  }
-  function main$lambda$lambda$lambda$lambda$lambda_5($receiver) {
-    $receiver.text = 'email';
-    $receiver.href = 'mailto:lewisrhine@gmail.com';
-    $receiver.materialIcons = 'email';
-    return Unit;
-  }
-  function main$lambda$lambda$lambda$lambda(this$) {
-    return function ($receiver) {
-      $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda(this$));
-      $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_0);
-      $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_1);
-      $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_2);
-      $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_3);
-      $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_4);
-      $receiver.link_g1rzco$(main$lambda$lambda$lambda$lambda$lambda_5);
-      return Unit;
-    };
-  }
-  function main$lambda$lambda$lambda_0(this$) {
-    return function ($receiver) {
-      var $receiver_0 = $receiver.mainElement;
-      var classId = 'drawer-header ' + new MdlColor$Background$blueGrey(Shade$s300_getInstance());
-      var $receiver_1 = document.createElement('header');
-      classType($receiver_1, classId);
-      var header = $receiver_1;
-      var img = new Img('avatar');
-      img.src = 'images/roundprofile.png';
-      header.append(img.mainElement);
-      img.mainElement;
-      var b = document.createElement('b');
-      b.textContent = 'Lewis Rhine';
-      header.append(b);
-      header.append(document.createTextNode('Android Developer'));
-      $receiver_0.append(header);
-      $receiver.nav_huf4ba$('navigation', main$lambda$lambda$lambda$lambda(this$));
-      return Unit;
-    };
   }
   function main$lambda$lambda($receiver) {
-    $receiver.header_jktz5e$(void 0, void 0, void 0, main$lambda$lambda$lambda);
-    $receiver.drawer_pvsmkh$('drawer', void 0, main$lambda$lambda$lambda_0($receiver));
+    $receiver.header_jktz5e$(Color_getInstance().primary, void 0, void 0, main$lambda$lambda$lambda);
+    $receiver.drawer_pvsmkh$('drawer', void 0, main$lambda$lambda$lambda_0);
     return Unit;
   }
   function main$lambda($receiver) {
-    $receiver.navigationLayout_d0ce5n$(About_getInstance(), 'layout', main$lambda$lambda);
+    $receiver.navigationLayout_d0ce5n$(MainPage_getInstance(), 'layout', main$lambda$lambda);
     return Unit;
   }
   function main(args) {
     var mdlApp_0 = mdlApp(main$lambda);
   }
-  function About() {
-    About_instance = this;
-    this.content_7adpqh$_0 = content('About', void 0, About$content$lambda);
+  function Color() {
+    Color_instance = this;
+    this.primary = (new MdlColor$Background$pink(Shade$s800_getInstance())).toString();
+    this.accent = (new MdlColor$Background$red(Shade$s400_getInstance())).toString();
   }
-  Object.defineProperty(About.prototype, 'content', {
+  Color.$metadata$ = {
+    kind: Kind_OBJECT,
+    simpleName: 'Color',
+    interfaces: []
+  };
+  var Color_instance = null;
+  function Color_getInstance() {
+    if (Color_instance === null) {
+      new Color();
+    }
+    return Color_instance;
+  }
+  function Forums() {
+    Forums_instance = this;
+    this.content_6m6m6s$_0 = content('Foros', void 0, Forums$content$lambda);
+  }
+  Object.defineProperty(Forums.prototype, 'content', {
     get: function () {
-      return this.content_7adpqh$_0;
+      return this.content_6m6m6s$_0;
     }
   });
-  function About$content$lambda$lambda$lambda($receiver) {
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_0($receiver) {
-    $receiver.title = 'About me';
-    $receiver.supportingText = "Completely self-taught, I began my love for writing code when I was you kid and found out about QBasic on the family computer. In my day to day life, I enjoy keeping up with new developments within the technology and android community. I am very passionate about clean thought out architecture in the code I write. And believe strongly in testing as much as possible. Even on Android where it's not the easiest to accomplish.";
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_1($receiver) {
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_2($receiver) {
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda($receiver) {
-    $receiver.src = 'images/java-logo.png';
-    $receiver.text = 'Java';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_0($receiver) {
-    $receiver.src = 'images/kotlin-logo.png';
-    $receiver.text = 'Kotlin';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_1($receiver) {
-    $receiver.src = 'images/android-logo.png';
-    $receiver.text = 'Android Native';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_2($receiver) {
-    $receiver.src = 'images/rxjava-logo.png';
-    $receiver.text = 'RxJava';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_3($receiver) {
-    $receiver.src = 'images/javascript-logo.png';
-    $receiver.text = 'JavaScript';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_4($receiver) {
-    $receiver.src = 'images/react-logo.png';
-    $receiver.text = 'React Native';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_5($receiver) {
-    $receiver.src = 'images/unity-logo.png';
-    $receiver.text = 'Unity3D';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_6($receiver) {
-    $receiver.text = 'Junit';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda$lambda_7($receiver) {
-    $receiver.src = 'images/mockito-logo.png';
-    $receiver.text = 'Mockito';
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_3($receiver) {
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda);
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda_0);
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda_1);
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda_2);
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda_3);
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda_4);
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda_5);
-    chip($receiver, void 0, void 0, About$content$lambda$lambda$lambda$lambda_6);
-    chip($receiver, void 0, true, About$content$lambda$lambda$lambda$lambda_7);
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_4($receiver) {
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_5($receiver) {
-    $receiver.size_vux9f0$();
-    $receiver.title = 'Rithmio';
-    $receiver.supportingText = 'Mar 2016 \u2014 present';
-    var $receiver_0 = $receiver.mainElement;
-    var list = new List('');
-    list.item_ccvxaz$(new ListIem('-At Rithmio I Introduced new technologies like Kotlin and RxJava which have helped to make the team faster and more efficient.'));
-    list.item_ccvxaz$(new ListIem('-Rithmio EDGE: I designed a new architecture based on Flux style circular data streams that made the code base more testable and stable.'));
-    list.item_ccvxaz$(new ListIem('-Cadence Counter: I built a prototype app from the ground up that had a strict two-week window of completion. I was able to complete it in only a week giving the project an extra week for testing. '));
-    plus($receiver_0, list.mainElement);
-    list.mainElement;
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_6($receiver) {
-    $receiver.size_vux9f0$();
-    $receiver.title = 'MeetBall';
-    $receiver.supportingText = 'Jun 2015 \u2014 Mar 2016';
-    var $receiver_0 = $receiver.mainElement;
-    var list = new List('');
-    list.item_ccvxaz$(new ListIem('-At MeetBall I was the sole Android developer took over code base from a contractor and quickly moved the code a more structured testable state.'));
-    list.item_ccvxaz$(new ListIem('-Integrated Beacon awareness into the app using the Radius Networks SDK'));
-    plus($receiver_0, list.mainElement);
-    list.mainElement;
-    return Unit;
-  }
-  function About$content$lambda$lambda$lambda_7($receiver) {
-    $receiver.title = 'Tinker Entertainment';
-    $receiver.supportingText = 'Sep 2014 \u2014 Nov 2014';
-    var $receiver_0 = $receiver.mainElement;
-    var list = new List('');
-    list.item_ccvxaz$(new ListIem('While defunct, I picked up this project for my friend\u2019s new company venture when his original developer dropped out. With the game\u2019s code base written in C# and using the Unity3D framework, I quickly adapted myself to the language and provided an initial product release.'));
-    plus($receiver_0, list.mainElement);
-    list.mainElement;
-    return Unit;
-  }
-  function About$content$lambda$lambda($receiver) {
-    $receiver.cell_jop4ru$(3, void 0, About$content$lambda$lambda$lambda);
-    $receiver.cellCard_oteltj$(6, void 0, void 0, About$content$lambda$lambda$lambda_0);
-    $receiver.cell_jop4ru$(3, void 0, About$content$lambda$lambda$lambda_1);
-    $receiver.cell_jop4ru$(1, void 0, About$content$lambda$lambda$lambda_2);
-    $receiver.cell_jop4ru$(10, void 0, About$content$lambda$lambda$lambda_3);
-    $receiver.cell_jop4ru$(1, void 0, About$content$lambda$lambda$lambda_4);
-    $receiver.cellCard_oteltj$(4, void 0, void 0, About$content$lambda$lambda$lambda_5);
-    $receiver.cellCard_oteltj$(4, void 0, void 0, About$content$lambda$lambda$lambda_6);
-    $receiver.cellCard_oteltj$(4, void 0, void 0, About$content$lambda$lambda$lambda_7);
-    return Unit;
-  }
-  function About$content$lambda($receiver) {
+  function Forums$content$lambda($receiver) {
     $receiver.setAttribute('style', " background: url('images/whoiam.jpg') center / cover; filter: alpha(opacity=60); padding: 10px;");
-    grid($receiver, void 0, About$content$lambda$lambda);
     return Unit;
   }
-  About.$metadata$ = {
+  Forums.$metadata$ = {
     kind: Kind_OBJECT,
-    simpleName: 'About',
+    simpleName: 'Forums',
     interfaces: [MdlContent]
   };
-  var About_instance = null;
-  function About_getInstance() {
-    if (About_instance === null) {
-      new About();
+  var Forums_instance = null;
+  function Forums_getInstance() {
+    if (Forums_instance === null) {
+      new Forums();
     }
-    return About_instance;
+    return Forums_instance;
   }
-  function Projects() {
-    Projects_instance = this;
-    this.content_omg0zy$_0 = content('Projects', void 0, Projects$content$lambda);
+  function MainPage() {
+    MainPage_instance = this;
+    this.content_vbbrue$_0 = content('Pagina Principal', void 0, MainPage$content$lambda(this));
   }
-  Object.defineProperty(Projects.prototype, 'content', {
+  Object.defineProperty(MainPage.prototype, 'content', {
     get: function () {
-      return this.content_omg0zy$_0;
+      return this.content_vbbrue$_0;
     }
   });
-  function Projects$content$lambda($receiver) {
-    return Unit;
+  function MainPage$createX$lambda(closure$images, closure$i, closure$titles, closure$supportingTexts) {
+    return function ($receiver) {
+      $receiver.size_vux9f0$();
+      $receiver.image = new Card$Image(closure$images[closure$i]);
+      $receiver.title = closure$titles[closure$i];
+      $receiver.supportingText = closure$supportingTexts[closure$i];
+      $receiver.button = new Card$Button('VER', Color_getInstance().accent);
+      return Unit;
+    };
   }
-  Projects.$metadata$ = {
+  MainPage.prototype.createX_0 = function ($receiver, lines, images, titles, supportingTexts) {
+    var tmp$;
+    tmp$ = lines * 6 | 0;
+    for (var i = 0; i < tmp$; i++) {
+      $receiver.cellCard_oteltj$(2, void 0, void 0, MainPage$createX$lambda(images, i, titles, supportingTexts));
+    }
+  };
+  var Array_0 = Array;
+  function MainPage$content$lambda$lambda(this$MainPage) {
+    return function ($receiver) {
+      var array = Array_0(20 * 6 | 0);
+      var tmp$;
+      tmp$ = array.length - 1 | 0;
+      for (var i = 0; i <= tmp$; i++) {
+        array[i] = 'images/laptop.jpg';
+      }
+      var images = array;
+      var array_0 = Array_0(20 * 6 | 0);
+      var tmp$_0;
+      tmp$_0 = array_0.length - 1 | 0;
+      for (var i_0 = 0; i_0 <= tmp$_0; i_0++) {
+        array_0[i_0] = 'Rithmio';
+      }
+      var titles = array_0;
+      var array_1 = Array_0(20 * 6 | 0);
+      var tmp$_1;
+      tmp$_1 = array_1.length - 1 | 0;
+      for (var i_1 = 0; i_1 <= tmp$_1; i_1++) {
+        array_1[i_1] = 'At Rithmio I Introduced new technologies like Kotlin and RxJava which have helped to make the team faster and more efficient.';
+      }
+      var supportingTexts = array_1;
+      this$MainPage.createX_0($receiver, 20, images, titles, supportingTexts);
+      return Unit;
+    };
+  }
+  function MainPage$content$lambda(this$MainPage) {
+    return function ($receiver) {
+      grid($receiver, void 0, MainPage$content$lambda$lambda(this$MainPage));
+      return Unit;
+    };
+  }
+  MainPage.$metadata$ = {
     kind: Kind_OBJECT,
-    simpleName: 'Projects',
+    simpleName: 'MainPage',
     interfaces: [MdlContent]
   };
-  var Projects_instance = null;
-  function Projects_getInstance() {
-    if (Projects_instance === null) {
-      new Projects();
+  var MainPage_instance = null;
+  function MainPage_getInstance() {
+    if (MainPage_instance === null) {
+      new MainPage();
     }
-    return Projects_instance;
+    return MainPage_instance;
   }
   MdlColor$Background.blueGrey = MdlColor$Background$blueGrey;
   MdlColor$Background.red = MdlColor$Background$red;
@@ -2967,6 +2965,8 @@ this['School-Web-Project'] = function (_, Kotlin) {
   });
   Card.Shadow = Card$Shadow;
   $$importsForInline$$['School-Web-Project'] = _;
+  Card.Image = Card$Image;
+  Card.Button = Card$Button;
   package$components.Card = Card;
   package$components.chip_pi6zr4$ = chip;
   Chip.ChipText = Chip$ChipText;
@@ -3005,14 +3005,17 @@ this['School-Web-Project'] = function (_, Kotlin) {
   _.span_rvhpk0$ = span_0;
   _.style_46n0ku$ = style;
   _.Img = Img;
-  var package$samplesite = _.samplesite || (_.samplesite = {});
-  package$samplesite.main_kand9s$ = main;
-  var package$pages = package$samplesite.pages || (package$samplesite.pages = {});
-  Object.defineProperty(package$pages, 'About', {
-    get: About_getInstance
+  var package$site = _.site || (_.site = {});
+  package$site.main_kand9s$ = main;
+  Object.defineProperty(package$site, 'Color', {
+    get: Color_getInstance
   });
-  Object.defineProperty(package$pages, 'Projects', {
-    get: Projects_getInstance
+  var package$pages = package$site.pages || (package$site.pages = {});
+  Object.defineProperty(package$pages, 'Forums', {
+    get: Forums_getInstance
+  });
+  Object.defineProperty(package$pages, 'MainPage', {
+    get: MainPage_getInstance
   });
   Drawer.prototype.nav_huf4ba$$default = LayoutNav.prototype.nav_huf4ba$$default;
   Drawer.prototype.layoutTile_t2t2ot$$default = LayoutTile.prototype.layoutTile_t2t2ot$$default;
