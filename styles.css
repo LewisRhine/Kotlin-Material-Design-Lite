@@ -41,3 +41,20 @@ html, body {
   margin-right: 32px;
   width: 24px
 }
+
+.card_helper {
+    max-width: 100%;
+}
+
+dialog::backdrop { /* native */
+  background-color: green;
+}
+dialog + .backdrop { /* polyfill */
+  background-color: green;
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  transform: translate(0, -50%);
+}

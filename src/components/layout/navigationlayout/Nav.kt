@@ -3,9 +3,8 @@ package components.layout.navigationlayout
 import components.MdlComponent
 import materialIcon
 import org.w3c.dom.Element
+import org.w3c.dom.events.Event
 import kotlin.browser.document
-import kotlin.dom.onClick
-
 
 interface LayoutNav {
     val mainElement: Element
@@ -34,8 +33,8 @@ class Nav(cssClassId: String = "") : MdlComponent("nav", "mdl-navigation", cssCl
         var materialIcons: String = ""
         var text: String = ""
 
-        fun onClick(doOn: () -> Unit ) {
-            mainElement.onClick { doOn() }
+        fun onClick(doOn: Element.() -> Unit ) {
+            mainElement.addEventListener("click",  { _: Event -> mainElement.doOn() })
         }
     }
 }
